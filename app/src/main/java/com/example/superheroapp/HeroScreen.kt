@@ -21,6 +21,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -42,8 +43,8 @@ fun HeroCard(
         Row(
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically,
-            modifier = modifier.padding(16.dp).clip(Shapes.medium)
-                .fillMaxSize().sizeIn(minHeight=72.dp)
+            modifier = modifier.clip(Shapes.medium).fillMaxSize()
+                .sizeIn(minHeight=72.dp).padding(16.dp)
         ){
             Column(
                 modifier.weight(3f)
@@ -58,12 +59,13 @@ fun HeroCard(
                 )
             }
             Box(
-                modifier.padding(start=16.dp).weight(1f).size(72.dp)
+                modifier.weight(1f).clip(Shapes.small)
+                    .padding(start=16.dp).size(72.dp)
             ){
                 Image(
                     painter = painterResource(img),
                     contentDescription = null,
-                    modifier = modifier.clip(Shapes.small)
+                    contentScale = ContentScale.Crop,
                 )
             }
         }
